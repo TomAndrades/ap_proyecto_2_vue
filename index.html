@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/img/Icon.png"
+      type="image/x-icon"
+    />
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./assets/style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <!-- NAV -->
+      <nav class="navbar navbar-expand-sm bg-dark">
+        <div class="container-fluid">
+          <a
+            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto w-md-50 justify-content-center justify-content-sm-start"
+            href="#"
+            ><img
+              class="w-50"
+              src="./assets/img/Logo_Amazing_Events.png"
+              alt="Brand logo"
+          /></a>
+          
+          <ul class="nav nav-pills justify-content-center gap-2 w-100 justify-content-md-end">
+            <li class="nav-item text-center">
+              <a
+                class="nav-link btn-fucsia rounded text-bg-dark"
+                aria-current="page"
+                href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item text-center">
+              <a
+                class="nav-link btn-fucsia rounded"
+                href="./upcoming_events.html"
+                >Upcoming Events</a
+              >
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link btn-fucsia rounded" href="./past_events.html"
+                >Past Events</a
+              >
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link btn-fucsia rounded" href="./contact.html"
+                >Contact</a
+              >
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link btn-fucsia rounded" href="./stats.html"
+                >Stats</a
+              >
+            </li>
+          </ul>
+      </nav>
+
+      <div
+        class="carousel carousel-dark slide bg-fucsia text-bg-dark text-center"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <h1 class="fs-2">Home</h1>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <h1 class="fs-2">Upcoming events</h1>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <h1 class="fs-2">Past events</h1>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <h1 class="fs-2">Contact</h1>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <h1 class="fs-2">Stats</h1>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="./stats.html">
+          <i class="bi bi-chevron-compact-left fs-2"></i>
+        </a>
+        <a class="carousel-control-next" href="./upcoming_events.html">
+          <i class="bi bi-chevron-compact-right fs-2"></i>
+        </a>
+      </div>
+    </header>
+
+    <main class="container-fluid bg-fucsia bg-gradient">
+      <div
+        class="d-flex flex-wrap flex-sm-nowrap flex-column flex-sm-row px-2 pt-2 align-items-center"
+      >
+        <div
+          class="d-flex flex-row flex-wrap gap-2 w-100"
+          id="checkboxGroup"
+        ></div>
+        <div class="d-flex flex-sm-shrink-1">
+          <form class="form d-flex flex-nowrap justify-content-center">
+            <input
+              class="form-control"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              id="search"
+            />
+            <button
+              class="btn btn-fucsia btn-outline-dark py-2"
+              type="submit"
+              id="searchBtn"
+            >
+              <img src="./assets/img/search.svg" alt="Search icon" />
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div
+        id="eventsBody"
+        class="row row-cols-sm-2 row-cols-md-3 row-cols-1 row-cols-lg-4 row-cols-xl-5 p-2 mt-1 g-3"
+      >
+        <!-- Se agregan las tarjetas dinamicamente-->
+      </div>
+    </main>
+
+    <footer class="container-fluid bg-dark py-2">
+      <div class="row w-100 ms-1 gap-2">
+        <div
+          class="col col-1 text-center square rounded-circle border border-0 btn-fucsia justify-content-center d-flex pt-1"
+        >
+          <a class="text-reset" href="#">
+            <i class="bi bi-instagram"></i>
+          </a>
+        </div>
+        <div
+          class="col col-1 text-center square rounded-circle border border-0 btn-fucsia justify-content-center d-flex pt-1"
+        >
+          <a class="text-reset" href="#">
+            <i class="bi bi-facebook"></i>
+          </a>
+        </div>
+        <div
+          class="col col-1 text-center square rounded-circle border border-0 btn-fucsia justify-content-center d-flex pt-1"
+        >
+          <a class="text-reset" href="#">
+            <i class="bi bi-whatsapp"></i>
+          </a>
+        </div>
+        <div class="col offset-md-4 text-end align-middle">
+          <h6 class="text-bg-dark mt-1">Cohort FE13-TN</h6>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="./assets/js/data.js"></script> -->
+    <script src="./assets/js/functions.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+.card {
+    height: 100%;
+    background-color: #b3b3b3;
+}
+
+.card>img {
+    object-fit: cover;
+    height: 136px;
+}
+
+.btn-fucsia {
+    background-color: #D90368 !important;
+    color: white !important;
+}
+
+.btn-fucsia:hover {
+    background-color: #c0005a !important;
+}
+
+.bg-fucsia {
+    background-color: #aa326a !important;
+}
+
+.fucsia {
+    color:#D90368 !important;
+}
+
+.form-control:focus {
+    border: 3px solid #D90368;
+    box-shadow: none;
+}
+
+.square {
+    width: 2rem;
+    height: 2rem;
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
