@@ -18,30 +18,6 @@ async function getConditionalEvents(time = 0) {
         eventosFiltrados = Array.from(eventos).filter((event) => event.date > currentDate)
       break;
     }
-    // switch (time) {
-    //   case -1:
-    //     //before currentDate events
-    //     for (let i = 0; i < data.events.length; i++) {
-    //       if (data.currentDate > data.events[i].date)
-    //         eventosFiltrados.push(data.events[i])
-    //     }
-    //     break;
-    //   case 0:
-    //     //all events
-    //     for (let i = 0; i < data.events.length; i++) {
-    //       eventosFiltrados.push(data.events[i]);
-    //     }
-    //     break;
-    //   case 1:
-    //     //after currentDate events
-    //     for (let i = 0; i < data.events.length; i++) {
-    //       if (data.currentDate < data.events[i].date)
-    //       eventosFiltrados.push(data.events[i])
-    //     }
-    //     break;
-    // }
-    categoryInserter(getCategorys(eventosFiltrados))
-    cardInserter(eventosFiltrados)
     return eventosFiltrados
   }
   catch(error){
@@ -50,11 +26,6 @@ async function getConditionalEvents(time = 0) {
   }
 }
 
-function htmlAdder(elementId, elementToInsert) {
-  //Toma un padre del documento por el ID y un string a insertar y lo inserta en el html
-  let element = document.getElementById(elementId);
-  element.innerHTML = elementToInsert;
-}
 
 function getCategorys(events) {
   // Toma un array de eventos y devuelve un array de categorias unicas
@@ -66,54 +37,6 @@ function getCategorys(events) {
     }
   }
   return categorys
-}
-
-function categoryInserter(categorys) {
-  let templateCheckbox = ""
-  for (const category of categorys) {
-    templateCheckbox += `<label class="form-check-label">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value="${category}"
-        id="${category}"
-      />
-      ${category}
-      </label>`
-  }
-  htmlAdder("checkboxGroup", templateCheckbox)
-}
-
-function cardInserter(events) {
-  let templateCards = ""
-  
-  events.forEach(event => {
-    
-    templateCards += `<div class="col">
-        <div class="card text-bg-dark">
-          <img
-            src="${event.image}"
-            class="card-img-top"
-            alt="${event.name}"
-          />
-          <div class="card-body">
-            <h5 class="card-title">${event.name}</h5>
-            <p class="card-text">
-              ${event.description}
-            </p>
-          </div>
-          <div
-            class="card-footer d-flex justify-content-between align-items-center"
-          >
-            <p class="pt-3">Precio: $${event.price}</p>
-            <a href="./details.html?id=${event._id}" class="btn btn-fucsia">ver mas...</a>
-          </div>
-        </div>
-      </div>`;
-  });
-  
-
-  htmlAdder("eventsBody", templateCards)
 }
 
 function searchByName(eventos, value) {
@@ -148,7 +71,7 @@ async function makeSearch() {
       showingElements = eventosFiltrados
     }
 } else {
-  eventosFiltrados = await events
+  eventosFiltrados = events
   if (value != 0) {
     showingElements = searchByName(showingElements,value)
   }

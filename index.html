@@ -20,6 +20,7 @@
   </head>
 
   <body>
+    <div id="app">
     <header>
       <!-- NAV -->
       <nav class="navbar navbar-expand-sm bg-dark">
@@ -34,15 +35,15 @@
           /></a>
           
           <ul class="nav nav-pills justify-content-center gap-2 w-100 justify-content-md-end">
-            <li class="nav-item text-center">
+            <li class="nav-item text-center" v-for="(pagina, i) in paginas">
               <a
                 class="nav-link btn-fucsia rounded text-bg-dark"
                 aria-current="page"
-                href="#"
-                >Home</a
+                @click="index = i"
+                >{{pagina}}</a
               >
             </li>
-            <li class="nav-item text-center">
+            <!-- <li class="nav-item text-center">
               <a
                 class="nav-link btn-fucsia rounded"
                 href="./upcoming_events.html"
@@ -63,7 +64,7 @@
               <a class="nav-link btn-fucsia rounded" href="./stats.html"
                 >Stats</a
               >
-            </li>
+            </li> -->
           </ul>
       </nav>
 
@@ -71,71 +72,89 @@
         class="carousel carousel-dark slide bg-fucsia text-bg-dark text-center"
       >
         <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10000">
-            <h1 class="fs-2">Home</h1>
-          </div>
-          <div class="carousel-item" data-bs-interval="10000">
-            <h1 class="fs-2">Upcoming events</h1>
-          </div>
-          <div class="carousel-item" data-bs-interval="10000">
-            <h1 class="fs-2">Past events</h1>
-          </div>
-          <div class="carousel-item" data-bs-interval="10000">
-            <h1 class="fs-2">Contact</h1>
-          </div>
-          <div class="carousel-item" data-bs-interval="10000">
-            <h1 class="fs-2">Stats</h1>
-          </div>
+          <div class="carousel-item active">
+            <h1 class="fs-2">{{paginaSeleccionada}}</h1>
         </div>
-        <a class="carousel-control-prev" href="./stats.html">
+        </div>
+        <button @click="restar();filterEvents();" class="carousel-control-prev">
           <i class="bi bi-chevron-compact-left fs-2"></i>
-        </a>
-        <a class="carousel-control-next" href="./upcoming_events.html">
+        </button>
+        <button @click="sumar();filterEvents()" class="carousel-control-next">
           <i class="bi bi-chevron-compact-right fs-2"></i>
-        </a>
+        </button>
       </div>
     </header>
-
+    
     <main class="container-fluid bg-fucsia bg-gradient">
       <div
-        class="d-flex flex-wrap flex-sm-nowrap flex-column flex-sm-row px-2 pt-2 align-items-center"
+      class="d-flex flex-wrap flex-sm-nowrap flex-column flex-sm-row px-2 pt-2 align-items-center"
       >
-        <div
-          class="d-flex flex-row flex-wrap gap-2 w-100"
-          id="checkboxGroup"
-        ></div>
-        <div class="d-flex flex-sm-shrink-1">
-          <form class="form d-flex flex-nowrap justify-content-center">
-            <input
-              class="form-control"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              id="search"
-            />
+      <div
+      class="d-flex flex-row flex-wrap gap-2 w-100"
+      id="checkboxGroup"
+      >
+      <label class="form-check-label" v-for="categoria of categorias">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          :value="categoria"
+          :id="categoria"
+        />
+        {{categoria}}
+        </label>
+    </div>
+      <div class="d-flex flex-sm-shrink-1">
+        <form class="form d-flex flex-nowrap justify-content-center">
+          <input
+          class="form-control"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          id="search"
+          />
             <button
               class="btn btn-fucsia btn-outline-dark py-2"
               type="submit"
               id="searchBtn"
-            >
+              >
               <img src="./assets/img/search.svg" alt="Search icon" />
             </button>
           </form>
         </div>
       </div>
-
       <div
-        id="eventsBody"
-        class="row row-cols-sm-2 row-cols-md-3 row-cols-1 row-cols-lg-4 row-cols-xl-5 p-2 mt-1 g-3"
+      id="eventsBody"
+      class="row row-cols-sm-2 row-cols-md-3 row-cols-1 row-cols-lg-4 row-cols-xl-5 p-2 mt-1 g-3"
       >
-        <!-- Se agregan las tarjetas dinamicamente-->
+      <div class="col" v-for="event of eventos">
+        <div class="card text-bg-dark">
+          <img
+            class="card-img-top"
+            :src="event.image"
+            :alt="event.name"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{event.name}}</h5>
+            <p class="card-text">
+              {{event.description}}
+            </p>
+          </div>
+          <div
+            class="card-footer d-flex justify-content-between align-items-center"
+          >
+            <p class="pt-3">Precio: ${{event.price}}</p>
+            <a :href="`./details.html?id=${event._id}`" class="btn btn-fucsia">ver mas...</a>
+          </div>
+        </div>
+      </div>
+      <!-- Se agregan las tarjetas dinamicamente-->
       </div>
     </main>
-
+    
     <footer class="container-fluid bg-dark py-2">
       <div class="row w-100 ms-1 gap-2">
         <div
-          class="col col-1 text-center square rounded-circle border border-0 btn-fucsia justify-content-center d-flex pt-1"
+        class="col col-1 text-center square rounded-circle border border-0 btn-fucsia justify-content-center d-flex pt-1"
         >
           <a class="text-reset" href="#">
             <i class="bi bi-instagram"></i>
@@ -160,13 +179,13 @@
         </div>
       </div>
     </footer>
+  </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
-    <!-- <script src="./assets/js/data.js"></script> -->
-    <script src="./assets/js/functions.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>

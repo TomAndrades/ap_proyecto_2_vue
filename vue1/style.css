@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --rojo: #9c1203;
+    --amarillo: #e3a000;
+    --verde: #033807;
+    --azul: #00165e;
+    --morado: #2d004d;
+    --gris: #5d5d5d;
+    --negro: #000000;
+}
+header{
+    min-height: 10vh;
+    background-color: var(--amarillo);
+}
+header img{
+    width: 25%;
+}
+main{
+    min-height: 85vh;
+    background-color: var(--negro);
+}
+footer{
+    min-height: 5vh;
+    background-color: var(--rojo);
+    color: white;
+}
