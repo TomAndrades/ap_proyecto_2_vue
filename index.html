@@ -40,31 +40,10 @@
                 class="nav-link btn-fucsia rounded text-bg-dark"
                 aria-current="page"
                 @click="index = i"
+                href="#"
                 >{{pagina}}</a
               >
             </li>
-            <!-- <li class="nav-item text-center">
-              <a
-                class="nav-link btn-fucsia rounded"
-                href="./upcoming_events.html"
-                >Upcoming Events</a
-              >
-            </li>
-            <li class="nav-item text-center">
-              <a class="nav-link btn-fucsia rounded" href="./past_events.html"
-                >Past Events</a
-              >
-            </li>
-            <li class="nav-item text-center">
-              <a class="nav-link btn-fucsia rounded" href="./contact.html"
-                >Contact</a
-              >
-            </li>
-            <li class="nav-item text-center">
-              <a class="nav-link btn-fucsia rounded" href="./stats.html"
-                >Stats</a
-              >
-            </li> -->
           </ul>
       </nav>
 
@@ -122,11 +101,13 @@
           </form>
         </div>
       </div>
+
+
       <div
       id="eventsBody"
       class="row row-cols-sm-2 row-cols-md-3 row-cols-1 row-cols-lg-4 row-cols-xl-5 p-2 mt-1 g-3"
       >
-      <div class="col" v-for="event of eventos">
+      <div class="col" v-for="event of showEvents">
         <div class="card text-bg-dark">
           <img
             class="card-img-top"

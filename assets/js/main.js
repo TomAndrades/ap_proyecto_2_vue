@@ -43,9 +43,11 @@ const app = createApp({
     },
     sumar() {
       this.index == 4 ? (this.index = 0) : this.index++;
+      this.filterEvents()
     },
     restar() {
       this.index == 0 ? (this.index = 4) : this.index--;
+      this.filterEvents()
     },
     filterEvents() {
       switch (this.index) {
