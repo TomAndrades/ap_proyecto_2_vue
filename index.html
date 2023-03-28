@@ -55,19 +55,18 @@
             <h1 class="fs-2">{{paginaSeleccionada}}</h1>
         </div>
         </div>
-        <button @click="restar();filterEvents();" class="carousel-control-prev">
+        <button @click="restar" class="carousel-control-prev">
           <i class="bi bi-chevron-compact-left fs-2"></i>
         </button>
-        <button @click="sumar();filterEvents()" class="carousel-control-next">
+        <button @click="sumar" class="carousel-control-next">
           <i class="bi bi-chevron-compact-right fs-2"></i>
         </button>
+        {{filterEvents}}
       </div>
     </header>
     
     <main class="container-fluid bg-fucsia bg-gradient">
-      <div
-      class="d-flex flex-wrap flex-sm-nowrap flex-column flex-sm-row px-2 pt-2 align-items-center"
-      >
+      <div class="d-flex flex-wrap flex-sm-nowrap flex-column flex-sm-row px-2 pt-2 align-items-center">
       <div
       class="d-flex flex-row flex-wrap gap-2 w-100"
       id="checkboxGroup"
@@ -78,36 +77,31 @@
           type="checkbox"
           :value="categoria"
           :id="categoria"
+          v-model="categoriasSeleccionadas"
         />
         {{categoria}}
-        </label>
+      </label>
     </div>
+      {{filtroDoble}}
       <div class="d-flex flex-sm-shrink-1">
-        <form class="form d-flex flex-nowrap justify-content-center">
           <input
           class="form-control"
           type="search"
           placeholder="Search"
           aria-label="Search"
           id="search"
+          v-model="texto"
           />
-            <button
-              class="btn btn-fucsia btn-outline-dark py-2"
-              type="submit"
-              id="searchBtn"
-              >
-              <img src="./assets/img/search.svg" alt="Search icon" />
-            </button>
-          </form>
         </div>
       </div>
 
 
+      <p v-if="!eventos.length" class="display-3 fw-bolder text-center">No hay coincidencias!</p>
       <div
       id="eventsBody"
       class="row row-cols-sm-2 row-cols-md-3 row-cols-1 row-cols-lg-4 row-cols-xl-5 p-2 mt-1 g-3"
       >
-      <div class="col" v-for="event of showEvents">
+      <div class="col" v-for="event of eventos">
         <div class="card text-bg-dark">
           <img
             class="card-img-top"

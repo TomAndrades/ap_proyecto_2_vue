@@ -5,20 +5,22 @@ const app = createApp({
     return {
       paginas: ["Home", "Upcoming Events", "Past Events", "Contact", "Stats"],
       index: 0,
-      eventos: "esperandoAPI",
-      showEvents: [],
-      currentDate: "esperando API",
+      eventos: [],
+      backupEventos: [],
+      currentDate: "",
       categorias: [],
+      categoriasSeleccionadas: [],
+      texto: "",
     };
   },
   created() {
-    // whenever question changes, this function will run
     this.getEvents();
   },
-  mounted() {},
+  mounted() {
+
+  },
   methods: {
     async getEvents() {
-      this.eventos = "Obteniendo datos";
       try {
         const res = await fetch(
           "https://mindhub-xj03.onrender.com/api/amazing"
@@ -26,53 +28,70 @@ const app = createApp({
         const data = await res.json();
         this.eventos = await data.events;
         this.currentDate = await data.currentDate;
-        this.showEvents = await this.eventos
-        this.getCategorys()
+        this.backupEventos = this.eventos;
+        this.getCategorys(this.eventos)
       } catch (error) {
         this.eventos = "Error! Could not reach the API. " + error;
       }
     },
-    getCategorys() {
+    getCategorys(array) {
       // Toma un array de eventos y devuelve un array de categorias unicas
-      this.categorias = [];
-      for (let evento of this.showEvents) {
-        if (this.categorias.indexOf(evento.category) == -1) {
-          this.categorias.push(evento.category);
+      array.forEach(element => {
+        if (!this.categorias.includes(element.category)) {
+          this.categorias.push(element.category);
         }
-      }
+      });
     },
     sumar() {
       this.index == 4 ? (this.index = 0) : this.index++;
-      this.filterEvents()
     },
     restar() {
       this.index == 0 ? (this.index = 4) : this.index--;
-      this.filterEvents()
     },
-    filterEvents() {
-      switch (this.index) {
-        case 0:
-          this.showEvents = this.eventos;
-          this.getCategorys();
-          break;
-        case 1:
-          this.showEvents = Array.from(this.eventos).filter(
-            (event) => event.date > this.currentDate
-          );
-          this.getCategorys();
-          break;
-        case 2:
-          this.showEvents = Array.from(this.eventos).filter(
-            (event) => event.date < this.currentDate
-          );
-          this.getCategorys();
-          break;
-      }
-    },
+    
   },
   computed: {
     paginaSeleccionada() {
       return this.paginas[this.index];
+    },
+    // filtradoPorTexto() {
+    //   this.eventos = this.backupEventos.filter((evento) =>
+    //     evento.name.toLowerCase().includes(this.texto.toLowerCase())
+    //   );
+    // },
+    // filtrarPorCategoria() {
+    //   if(!this.categoriasSeleccionadas.length){
+    //     this.eventos = this.backupEventos
+    //   } else {
+    //     this.eventos = this.backupEventos.filter(evento => this.categoriasSeleccionadas.includes(evento.category))
+    //   }
+    // },
+    filtroDoble(){
+      let primerFiltro = this.eventos = this.backupEventos.filter((evento) =>
+        evento.name.toLowerCase().includes(this.texto.toLowerCase())
+      );
+      if(!this.categoriasSeleccionadas.length){
+        this.eventos = primerFiltro
+      } else {
+        this.eventos = primerFiltro.filter(evento => this.categoriasSeleccionadas.includes(evento.category))
+      }
+    },
+    filterEvents() {
+      switch (this.index) {
+        case 0:
+          this.eventos = this.backupEventos;
+          break;
+        case 1:
+          this.eventos = this.backupEventos.filter(
+            (event) => event.date > this.currentDate
+          );
+          break;
+        case 2:
+          this.eventos = this.backupEventos.filter(
+            (event) => event.date < this.currentDate
+          );
+          break;
+      }
     },
   },
 }).mount("#app");
