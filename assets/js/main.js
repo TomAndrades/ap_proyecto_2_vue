@@ -44,9 +44,11 @@ const app = createApp({
     },
     sumar() {
       this.index == 4 ? (this.index = 0) : this.index++;
+      this.categoriasSeleccionadas = []
     },
     restar() {
       this.index == 0 ? (this.index = 4) : this.index--;
+      this.categoriasSeleccionadas = []
     },
     
   },
